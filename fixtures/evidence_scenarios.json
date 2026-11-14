@@ -1,0 +1,334 @@
+{
+  "schema_version": 1,
+  "technologies": [
+    {
+      "id": "T",
+      "raw": [
+        {
+          "var": "e_t"
+        },
+        {
+          "var": "c_t"
+        },
+        {
+          "var": "l_t"
+        }
+      ]
+    },
+    {
+      "id": "A",
+      "raw": [
+        {
+          "var": "e_a"
+        },
+        {
+          "var": "c_a"
+        },
+        {
+          "var": "l_a"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "raw": [
+        {
+          "var": "e_b"
+        },
+        {
+          "var": "c_b"
+        },
+        {
+          "var": "l_b"
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "raw": [
+        {
+          "var": "e_c"
+        },
+        null,
+        {
+          "var": "l_c"
+        }
+      ]
+    }
+  ],
+  "criteria": [
+    {
+      "id": "energy_saving",
+      "direction": "benefit",
+      "scale": {
+        "type": "identity"
+      }
+    },
+    {
+      "id": "unit_cost",
+      "direction": "cost",
+      "scale": {
+        "type": "affine",
+        "scale": "-1",
+        "shift": "10",
+        "formula": "score(unit_cost) = -1 * raw_cost + 10",
+        "source": "frozen cost scale s1"
+      }
+    },
+    {
+      "id": "land_use",
+      "direction": "benefit",
+      "scale": {
+        "type": "identity"
+      }
+    }
+  ],
+  "evidence": {
+    "variables": [
+      {
+        "id": "e_t",
+        "lower": "0",
+        "upper": "10"
+      },
+      {
+        "id": "e_a",
+        "lower": "0",
+        "upper": "10"
+      },
+      {
+        "id": "e_b",
+        "lower": "0",
+        "upper": "10"
+      },
+      {
+        "id": "e_c",
+        "lower": "0",
+        "upper": "10"
+      },
+      {
+        "id": "c_t",
+        "lower": "0",
+        "upper": "10"
+      },
+      {
+        "id": "c_a",
+        "lower": "0",
+        "upper": "10"
+      },
+      {
+        "id": "c_b",
+        "lower": "0",
+        "upper": "10"
+      },
+      {
+        "id": "l_t",
+        "lower": "0",
+        "upper": "10"
+      },
+      {
+        "id": "l_a",
+        "lower": "0",
+        "upper": "10"
+      },
+      {
+        "id": "l_b",
+        "lower": "0",
+        "upper": "10"
+      },
+      {
+        "id": "l_c",
+        "lower": "0",
+        "upper": "10"
+      },
+      {
+        "id": "bench",
+        "lower": "0",
+        "upper": "10"
+      }
+    ],
+    "constraints": []
+  },
+  "scenarios": [
+    {
+      "id": "frozen-baseline",
+      "frozen": true,
+      "assignments": {
+        "bench": "5",
+        "e_t": "5",
+        "e_a": "8",
+        "e_b": "3",
+        "e_c": "6",
+        "c_t": "4",
+        "c_a": "3",
+        "c_b": "6",
+        "l_t": "5",
+        "l_a": "2",
+        "l_b": "8",
+        "l_c": "4"
+      },
+      "joint_constraints": [
+        {
+          "type": "linear",
+          "coeffs": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "-1"
+          ],
+          "rhs": "0",
+          "relation": "="
+        },
+        {
+          "type": "linear",
+          "coeffs": [
+            "-1",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "rhs": "0",
+          "relation": "<="
+        }
+      ]
+    },
+    {
+      "id": "frozen-optimistic-a",
+      "frozen": true,
+      "assignments": {
+        "bench": "5",
+        "e_t": "5",
+        "e_a": "9",
+        "e_b": "3",
+        "e_c": "6",
+        "c_t": "4",
+        "c_a": "2",
+        "c_b": "6",
+        "l_t": "5",
+        "l_a": "2",
+        "l_b": "8",
+        "l_c": "4"
+      },
+      "joint_constraints": [
+        {
+          "type": "linear",
+          "coeffs": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "-1"
+          ],
+          "rhs": "0",
+          "relation": "="
+        },
+        {
+          "type": "linear",
+          "coeffs": [
+            "-1",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "rhs": "0",
+          "relation": "<="
+        }
+      ]
+    },
+    {
+      "id": "frozen-infeasible",
+      "frozen": true,
+      "assignments": {
+        "bench": "5",
+        "e_t": "5",
+        "e_a": "8",
+        "e_b": "3",
+        "e_c": "6",
+        "c_t": "4",
+        "c_a": "3",
+        "c_b": "6",
+        "l_t": "5",
+        "l_a": "2",
+        "l_b": "8",
+        "l_c": "4"
+      },
+      "joint_constraints": [
+        {
+          "type": "linear",
+          "coeffs": [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "rhs": "9",
+          "relation": ">="
+        }
+      ]
+    }
+  ],
+  "weight_policy": {
+    "version": "p1",
+    "sum": "1",
+    "lower": [
+      "0.1",
+      "0.1",
+      "0.1"
+    ],
+    "upper": [
+      "0.7",
+      "0.7",
+      "0.7"
+    ],
+    "constraints": [
+      {
+        "type": "ratio",
+        "numerator": 0,
+        "denominator": 2,
+        "min": "1/2",
+        "max": "2"
+      }
+    ]
+  },
+  "margin": "0.1",
+  "scenario": "frozen-baseline",
+  "scales_version": "s1"
+}
